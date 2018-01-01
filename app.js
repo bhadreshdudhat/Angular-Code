@@ -5,18 +5,39 @@
   var NgModule=ng.core.NgModule;
   var BrowserModule=ng.platformBrowser.BrowserModule;
   var platformBrowserDynamic=ng.platformBrowserDynamic.platformBrowserDynamic;
+  var Class=ng.core.Class;
+
+  //creating a service(contains data and logic)
+  // --Components are responsible for displaying the things
+  // --All the other logic is kept in services(A class)
+  var QuoteService = Class({
+    constructor: function QuoteService() {
+      this.quotes = sampleQuotes;//using static quotes as of now (this can be dynamic)
+    },
+    //method for generating random number
+    getRandomQuote: function QuoteService() {
+      var randomIndex = Math.floor(Math.random() * this.quotes.length);
+      return this.quotes[randomIndex];
+    }
+  });
+
 
   //creating second component
   var RandomQuoteComponent = Component({
     selector: 'random-quote',
+    // providers: [QuoteService],//creating service instance at Component level
     template: '<p><em>{{quote.line}}</em> <br> - <b>{{quote.author}}</b></p>'//Property binding with interpolation{{}}
   })
   .Class({
-    constructor: function() {
-      var randomIndex=Math.floor(Math.random()*quotes.length);
-      this.quote=quotes[randomIndex];//adding a property for RandomQuoteComponentx
-    }
+    //declaring services as a parameter in our constructor function
+    //converting constructor into an array : to tell Angular parameterTYPE
+    //first item specifies classes of parameter
+    constructor: [QuoteService,function RandomQuoteComponent(quoteService) {
+      //var quoteService=new QuoteService();
+      this.quote= quoteService.getRandomQuote();
+    }]
   });
+
 
     //creating Angular component
     //ES 5 - access all angular 2 function by ng namespace available globally 
@@ -28,7 +49,7 @@
         '<random-quote></random-quote>'
     })
     .Class({
-    constructor: function() { }
+    constructor: function AppComponent() { }
   });//requires atleast a  constructor function for the class initialised in this fashion
     
   //Angular knows how to run our app
@@ -36,16 +57,17 @@
   var AppModule = NgModule({
     imports: [BrowserModule],
     declarations: [AppComponent,RandomQuoteComponent],//all the components in our app
-    bootstrap: [AppComponent]//which will rendered in our index.html
+    providers: [QuoteService],//creating service instance at Module level
+    bootstrap: [AppComponent]//which will rendered in our index.html (shared across different components)
   })
   .Class({
-    constructor: function() { }
+    constructor: function AppModule() { }
   });
 
   //telling Angular to bootsrap App MODULE we just created
   platformBrowserDynamic().bootstrapModule(AppModule);
 
-  var quotes=[
+  var sampleQuotes=[
     {
       "line": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
       "author": "Brian W. Kernighan"
