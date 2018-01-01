@@ -15,7 +15,7 @@
       this.quotes = sampleQuotes;//using static quotes as of now (this can be dynamic)
     },
     //method for generating random number
-    getRandomQuote: function QuoteService() {
+    getRandomQuote: function() {
       var randomIndex = Math.floor(Math.random() * this.quotes.length);
       return this.quotes[randomIndex];
     }
@@ -31,7 +31,7 @@
   .Class({
     //declaring services as a parameter in our constructor function
     //converting constructor into an array : to tell Angular parameterTYPE
-    //first item specifies classes of parameter
+    //first items specifies classes of parameters in the function
     constructor: [QuoteService,function RandomQuoteComponent(quoteService) {
       //var quoteService=new QuoteService();
       this.quote= quoteService.getRandomQuote();
