@@ -6,12 +6,24 @@
   var BrowserModule=ng.platformBrowser.BrowserModule;
   var platformBrowserDynamic=ng.platformBrowserDynamic.platformBrowserDynamic;
 
+  //creating second component
+  var RandomQuoteComponent = Component({
+    selector: 'random-quote',
+    template: '<p>This is a quote.</p>'
+  })
+  .Class({
+    constructor: function() {
+    }
+  });
+
     //creating Angular component
     //ES 5 - access all angular 2 function by ng namespace available globally 
     //we are passing object to the Component method
     var AppComponent=Component({
         selector:'my-app',//metadata used by Angular
-        template: '<h1>Hello World!</h1>'//html for our component
+        template://html for our component
+         '<h1>Hello World!</h1>'+
+        '<random-quote></random-quote>'
     })
     .Class({
     constructor: function() { }
@@ -21,7 +33,7 @@
   //1. create angular module (ng module)
   var AppModule = NgModule({
     imports: [BrowserModule],
-    declarations: [AppComponent],//all the components in our app
+    declarations: [AppComponent,RandomQuoteComponent],//all the components in our app
     bootstrap: [AppComponent]//which will rendered in our index.html
   })
   .Class({
