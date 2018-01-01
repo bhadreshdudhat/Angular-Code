@@ -9,11 +9,12 @@
   //creating second component
   var RandomQuoteComponent = Component({
     selector: 'random-quote',
-    template: '<p><em>{{quote.line}}</em> - <b>{{quote.author}}</b></p>'//Property binding with interpolation{{}}
+    template: '<p><em>{{quote.line}}</em> <br> - <b>{{quote.author}}</b></p>'//Property binding with interpolation{{}}
   })
   .Class({
     constructor: function() {
-      this.quote=quotes[0];//adding a property for RandomQuoteComponentx
+      var randomIndex=Math.floor(Math.random()*quotes.length);
+      this.quote=quotes[randomIndex];//adding a property for RandomQuoteComponentx
     }
   });
 
@@ -23,7 +24,7 @@
     var AppComponent=Component({
         selector:'my-app',//metadata used by Angular
         template://html for our component
-         '<h1>Hello World!</h1>'+
+         '<h1>Random Quote</h1>'+
         '<random-quote></random-quote>'
     })
     .Class({
