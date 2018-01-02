@@ -58,7 +58,7 @@ var MockQuoteService = Class({
     imports: [BrowserModule],
     declarations: [AppComponent,RandomQuoteComponent],//all the components in our app
     //creating service instance at Module level
-    providers:  [{provide:QuoteService,useClass:MockQuoteService}],
+    providers:  [{provide:QuoteService,useValue:new MockQuoteService()}],
               // only [QuoteService] same as [{provide:QuoteService,useClass:QuoteService}]
     bootstrap: [AppComponent]
   })
