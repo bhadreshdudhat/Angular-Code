@@ -1,5 +1,5 @@
-(function(app) {
-  var Component = ng.core.Component;
+
+  import {Component} from '@angular/core';
 
   //decorators
   @Component({
@@ -9,8 +9,5 @@
       <random-quote></random-quote>
       `
   })
-class AppComponent{ }
+export class AppComponent{ }
 
-  app.AppComponent = AppComponent;
-
-})(window.app || (window.app = {}));

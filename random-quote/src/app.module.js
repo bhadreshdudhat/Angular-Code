@@ -1,9 +1,9 @@
-(function(app) {
-  var NgModule=ng.core.NgModule;
-  var BrowserModule = ng.platformBrowser.BrowserModule;
-  var QuoteService = app.QuoteService;
-  var RandomQuoteComponent = app.RandomQuoteComponent;
-  var AppComponent = app.AppComponent;
+
+  import {NgModule} from '@angular/core';
+  import {BrowserModule} from '@angular/platform-browser';
+  import {QuoteService} from './quote.service';
+  import {RandomQuoteComponent} from './random-quote.component';
+  import {AppComponent} from './app.component';
 
   @NgModule({
     imports: [BrowserModule],
@@ -12,8 +12,6 @@
     bootstrap: [AppComponent]
   })
   
-  class AppModule{ }
-  
-  app.AppModule = AppModule;
+  export class AppModule{ }
 
-})(window.app || (window.app = {}));
+
