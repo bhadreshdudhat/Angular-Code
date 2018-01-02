@@ -1,22 +1,20 @@
 (function(app) {
   var Component = ng.core.Component;
   var QuoteService = app.QuoteService;
+  var Inject=ng.core.Inject;
 
-  app.RandomQuoteComponent = Component({
+  @Component({
     selector: 'random-quote',
-    template: '<p><em>--{{quote.line}}</em> - {{quote.author}}</p>'
+    template: '<p><em>{{quote.line}}</em> - {{quote.author}}</p>'
   })
-  .Class({
-    constructor: [QuoteService, function RandomQuoteComponent(quoteService) {
-     //var self = this;
-      // quoteService.generateRandomQuotes(2000, function(quote) {
-      //   self.quote = quote;
-      // });
-      //quoteService.generateRandomQuotes(2000, (quote) =>{self.quote = quote;});
-      //quoteService.generateRandomQuotes(2000, (quote) =>self.quote = quote);//for single statement in function body  remove {}
-      quoteService.generateRandomQuotes(2000, quote =>this.quote = quote);//for single parameter remove()
-      //we can now use "this" here
-    }]
-  });
+
+  class RandomQuoteComponent {
+    constructor(@Inject(QuoteService) quoteService) {
+      quoteService.generateRandomQuotes(2000, quote =>this.quote = quote);
+      
+    }
+  }
+    
+ app.RandomQuoteComponent=RandomQuoteComponent;
 
 })(window.app || (window.app = {}));
