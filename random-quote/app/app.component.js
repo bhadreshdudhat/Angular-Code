@@ -7,6 +7,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
   var Component = ng.core.Component;
 
+  //decorators
   var AppComponent = (_dec = Component({
     selector: 'my-app',
     template: '\n      <h1>Random Quote</h1> \n      <random-quote></random-quote>\n      '
