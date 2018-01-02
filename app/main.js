@@ -1,21 +1,11 @@
 (function(app){
-  var Component=ng.core.Component;
+
   var NgModule=ng.core.NgModule;
   var BrowserModule=ng.platformBrowser.BrowserModule;
   var platformBrowserDynamic=ng.platformBrowserDynamic.platformBrowserDynamic;
   var QuoteService=app.QuoteService;
   var RandomQuoteComponent= app.RandomQuoteComponent;//import
-
-
-    var AppComponent=Component({
-        selector:'my-app',
-        template:
-         '<h1>Random Quote</h1>'+
-        '<random-quote></random-quote>'
-    })
-    .Class({
-    constructor: function AppComponent() { }
-  });
+  var AppComponent=app.AppComponent;
 
   var AppModule = NgModule({
     imports: [BrowserModule],
