@@ -12,10 +12,15 @@
       return this.quotes[randomIndex];
     },
     generateRandomQuotes: function generateRandomQuotes(delay, callback) {
-      var self = this;
+      var _this = this;
+
+      //var self = this;
       callback(this.getRandomQuote());
+      // setTimeout(function() {
+      //   callback(self.getRandomQuote());
+      // }, delay);
       setTimeout(function () {
-        callback(self.getRandomQuote());
+        return callback(_this.getRandomQuote());
       }, delay);
     }
   });

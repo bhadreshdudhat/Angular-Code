@@ -9,10 +9,18 @@
     template: '<p><em>{{quote.line}}</em> - {{quote.author}}</p>'
   }).Class({
     constructor: [QuoteService, function RandomQuoteComponent(quoteService) {
-      var self = this;
+      var _this = this;
+
+      //var self = this;
+      // quoteService.generateRandomQuotes(2000, function(quote) {
+      //   self.quote = quote;
+      // });
+      //quoteService.generateRandomQuotes(2000, (quote) =>{self.quote = quote;});
+      //quoteService.generateRandomQuotes(2000, (quote) =>self.quote = quote);//for single statement in function body  remove {}
       quoteService.generateRandomQuotes(2000, function (quote) {
-        self.quote = quote;
-      });
+        return _this.quote = quote;
+      }); //for single parameter remove()
+      //we can now use "this" here
     }]
   });
 })(window.app || (window.app = {}));
