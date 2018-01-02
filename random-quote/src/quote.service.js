@@ -6,7 +6,7 @@
       this.quotes = sampleQuotes;
     },
     getRandomQuote: function() {
-      var randomIndex = Math.floor(Math.random() * this.quotes.length);
+      let randomIndex = Math.floor(Math.random() * this.quotes.length);
       return this.quotes[randomIndex];
     },
     generateRandomQuotes: function(delay, callback) {
