@@ -9,9 +9,18 @@
     constructor: function QuoteService() {
       this.quotes = sampleQuotes;
     },
+    
     getRandomQuote: function() {
       var randomIndex = Math.floor(Math.random() * this.quotes.length);
       return this.quotes[randomIndex];
+    },
+
+    generateRandomQuotes: function(delay, callback) {
+      var self = this;
+      callback(this.getRandomQuote());
+      setInterval(function() {
+        callback(self.getRandomQuote());
+      }, delay);
     }
   });
 
@@ -40,7 +49,10 @@ var MockQuoteService = Class({
       //var quoteService=new QuoteService();//each component has sepetate copy of service
       //if we want to REPLACE this QuoteService with different implementation we need to chage code in each component
       //eg:var quoteService=new DifferentQuoteService();
-      this.quote= quoteService.getRandomQuote();
+      var self = this;
+      quoteService.generateRandomQuotes(3000, function(quote) {
+        self.quote = quote;
+      });
     }]
   });
 
