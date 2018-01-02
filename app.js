@@ -15,6 +15,21 @@
     }
   });
 
+  //Dependency Injection
+// Different service for replacement
+var MockQuoteService = Class({
+  constructor: function QuoteService() {
+    this.quotes = sampleQuotes;
+  },
+  getRandomQuote: function() {
+    return {
+      line:'mock quote',
+      author:'mock auother'
+    }
+  }
+});
+
+
   var RandomQuoteComponent = Component({
     selector: 'random-quote',
     // providers: [QuoteService],//creating service instance at Component level
@@ -22,7 +37,9 @@
   })
   .Class({
     constructor: [QuoteService,function RandomQuoteComponent(quoteService) {
-      //var quoteService=new QuoteService();
+      //var quoteService=new QuoteService();//each component has sepetate copy of service
+      //if we want to REPLACE this QuoteService with different implementation we need to chage code in each component
+      //eg:var quoteService=new DifferentQuoteService();
       this.quote= quoteService.getRandomQuote();
     }]
   });
@@ -40,7 +57,9 @@
   var AppModule = NgModule({
     imports: [BrowserModule],
     declarations: [AppComponent,RandomQuoteComponent],//all the components in our app
-    providers: [QuoteService],//creating service instance at Module level
+    //creating service instance at Module level
+    providers:  [{provide:QuoteService,useClass:MockQuoteService}],
+              // only [QuoteService] same as [{provide:QuoteService,useClass:QuoteService}]
     bootstrap: [AppComponent]
   })
   .Class({
